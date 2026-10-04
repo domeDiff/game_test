@@ -14,6 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        rb.AddForce(moveSpeed * Time.deltaTime * Vector2.left);
+        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
     }
 }
