@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 3f;
 
     private bool jumpPressed = false;
     private Rigidbody2D rb;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if(jumpPressed)
         {
-            rb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce , ForceMode2D.Impulse);
         }
 
         jumpPressed = false;

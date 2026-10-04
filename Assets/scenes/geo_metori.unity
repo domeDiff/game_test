@@ -362,7 +362,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -376,7 +376,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &2081563838
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
+  jumpForce: 10
 --- !u!1001 &3383756315466296858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +490,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2290852356420974921, guid: 6a1356ea4ddb051468abdb15ab2f6fde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124743645740451976, guid: 6a1356ea4ddb051468abdb15ab2f6fde, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8082344115370360771, guid: 6a1356ea4ddb051468abdb15ab2f6fde, type: 3}
