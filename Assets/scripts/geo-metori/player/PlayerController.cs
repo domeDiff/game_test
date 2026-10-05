@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 3f;
 
+    [SerializeField] private ParticleSystem playerDes;
+
     private bool jumpPressed = false;
     private Rigidbody2D rb;
     private InputSystem_Actions inputActions;
@@ -43,5 +45,13 @@ public class PlayerController : MonoBehaviour
         }
 
         jumpPressed = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            Instantiate(playerDes, transform.position, Quaternion.identity);
+        }
     }
 }
