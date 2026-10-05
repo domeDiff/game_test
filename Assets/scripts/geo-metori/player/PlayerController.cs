@@ -1,7 +1,7 @@
-using UnityEditor;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem playerDes;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
+
 
     private bool isGrounded;
     private Animator animator;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inputActions = new InputSystem_Actions();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
@@ -64,15 +65,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Obstacle"))
         {
             Instantiate(playerDes, transform.position, Quaternion.identity);
-            Relaod();
-        }
-    }
-
-    private void Relaod()
-    {
-        if(Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
