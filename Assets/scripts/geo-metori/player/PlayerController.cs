@@ -1,11 +1,18 @@
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 3f;
+    [SerializeField] private ParticleSystem playerDes;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
 
-    private bool jumpPressed = false;
+
+    private bool isGrounded;
+    private Animator animator;
     private Rigidbody2D rb;
     private InputSystem_Actions inputActions;
 
@@ -13,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inputActions = new InputSystem_Actions();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
@@ -27,21 +35,36 @@ public class PlayerController : MonoBehaviour
   
     private void Update()
     {
-        if (inputActions.Player.Jump.triggered)
+        IsGrounded();
+
+        if (inputActions.Player.Jump.triggered && isGrounded)
         {
-            jumpPressed = true;
+            Jump();
         }
+
+        animator.SetBool("isJumping", !isGrounded);
+        
     }
 
     private void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+    }
 
-        if(jumpPressed)
+    private void Jump()
+    {
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void IsGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, LayerMask.GetMask("Ground"));
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
         {
-            rb.AddForce(Vector2.up * jumpForce , ForceMode2D.Impulse);
+            Instantiate(playerDes, transform.position, Quaternion.identity);
         }
-
-        jumpPressed = false;
     }
 }
