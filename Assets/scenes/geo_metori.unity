@@ -430,6 +430,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7706d3a4907ab6342bb753be9cfc6682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CamFollow
+--- !u!1 &975772984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 975772985}
+  m_Layer: 0
+  m_Name: groundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &975772985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975772984}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0069999695, y: -0.45219016, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2081563836}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1081565635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2290852356420974921, guid: 6a1356ea4ddb051468abdb15ab2f6fde, type: 3}
@@ -755,6 +786,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1875837931}
+  - {fileID: 975772985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2081563837
@@ -799,6 +831,8 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 20
   playerDes: {fileID: 3860470306615466595, guid: a24cb93b95126c0448fa876a10bbf452, type: 3}
+  groundCheck: {fileID: 975772985}
+  groundCheckRadius: 0.2
 --- !u!61 &2081563840
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,12 +1,14 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 3f;
     [SerializeField] private ParticleSystem playerDes;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
 
     private bool isGrounded;
     private Animator animator;
@@ -39,10 +41,8 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if(isGrounded)
-        {
-            animator.SetBool("isJumping", false);
-        }
+        animator.SetBool("isJumping", !isGrounded);
+        
     }
 
     private void FixedUpdate()
@@ -53,18 +53,26 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        animator.SetBool("isJumping", true);
     }
 
     private void IsGrounded()
     {
-        isGrounded = Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("Ground"));
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, LayerMask.GetMask("Ground"));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Obstacle"))
         {
             Instantiate(playerDes, transform.position, Quaternion.identity);
+            Relaod();
+        }
+    }
+
+    private void Relaod()
+    {
+        if(Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
