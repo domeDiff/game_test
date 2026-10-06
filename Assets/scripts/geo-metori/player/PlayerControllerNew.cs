@@ -9,11 +9,14 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField] private ParticleSystem playerDes;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float jumpBufferTimer = 0.12f;
     [SerializeField] private GameObject run;
 
 
 
     private bool isGrounded;
+    private float jumpBufferCounter;
     private Animator animator;
     private Rigidbody2D rb;
     private InputSystem_Actions inputActions;
@@ -25,31 +28,24 @@ public class PlayerControllerNew : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void Start()
-    {
-        run.SetActive(true);
-    }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
-    }
+    private void OnEnable() => inputActions.Enable();
+    private void OnDisable() => inputActions.Disable();
 
     private void Update()
     {
-        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        IsGrounded();
+        if (inputActions.Player.Jump.triggered)
+        {
+            jumpBufferCounter = jumpBufferTimer;
+        }
 
-        if (inputActions.Player.Jump.triggered && isGrounded)
+        jumpBufferCounter -= Time.deltaTime;
+
+        if(isGrounded && jumpBufferCounter > 0f)
         {
             Jump();
-            run.SetActive(false);
+            jumpBufferCounter = 0f;
         }
 
         run.SetActive(isGrounded);
@@ -64,13 +60,9 @@ public class PlayerControllerNew : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
-    private void IsGrounded()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, LayerMask.GetMask("Ground"));
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Obstacle"))
