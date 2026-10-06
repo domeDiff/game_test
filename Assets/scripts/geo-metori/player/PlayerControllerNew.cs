@@ -9,6 +9,8 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField] private ParticleSystem playerDes;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private GameObject run;
+
 
 
     private bool isGrounded;
@@ -23,6 +25,11 @@ public class PlayerControllerNew : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+        run.SetActive(true);
+    }
+
     private void OnEnable()
     {
         inputActions.Enable();
@@ -35,13 +42,17 @@ public class PlayerControllerNew : MonoBehaviour
 
     private void Update()
     {
+        
+
         IsGrounded();
 
         if (inputActions.Player.Jump.triggered && isGrounded)
         {
             Jump();
+            run.SetActive(false);
         }
 
+        run.SetActive(isGrounded);
         animator.SetBool("isJumping", !isGrounded);
 
     }
