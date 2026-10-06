@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    private Camera camera;
+    private new Camera camera;
     private Transform player;
     
     private void Start()
