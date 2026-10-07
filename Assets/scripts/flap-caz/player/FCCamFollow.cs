@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class FCCamFollow : MonoBehaviour
 {
+
     private new Camera camera;
-    private Transform player;
+    [SerializeField] private Transform player;
 
     private void Start()
     {

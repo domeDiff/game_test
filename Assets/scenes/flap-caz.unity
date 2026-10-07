@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FCPlayerController
   moveSpeed: 3
-  jumpForce: 6
+  jumpForce: 5
 --- !u!1 &401199067
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &401199068
 Transform:
   m_ObjectHideFlags: 0
@@ -537,9 +537,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1878290728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7706d3a4907ab6342bb753be9cfc6682, type: 3}
+  m_Script: {fileID: 11500000, guid: 449c9193fb18a1b419c48c77b011b1c9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CamFollow
+  m_EditorClassIdentifier: Assembly-CSharp::FCCamFollow
+  player: {fileID: 0}
 --- !u!1001 &9012217445335588859
 PrefabInstance:
   m_ObjectHideFlags: 0
