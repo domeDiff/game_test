@@ -18,6 +18,13 @@ public class Obst : MonoBehaviour
 
             StartCoroutine(ReloadScene());
         }
+
+        else if (collision.CompareTag("FCPlayer"))
+        {
+            playerDead = true;
+            collision.gameObject.SetActive(false);
+            StartCoroutine(FCReloadScene());
+        }
     }
     
     private IEnumerator ReloadScene()
@@ -25,5 +32,11 @@ public class Obst : MonoBehaviour
         yield return new WaitForSeconds(resTimer);
 
         SceneManager.LoadScene("geo_metori");
+    }
+    private IEnumerator FCReloadScene()
+    {
+        yield return new WaitForSeconds(resTimer);
+
+        SceneManager.LoadScene("flap-caz");
     }
 }
