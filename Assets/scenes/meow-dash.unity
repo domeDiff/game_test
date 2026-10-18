@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 84604583}
   - component: {fileID: 84604582}
   - component: {fileID: 84604585}
+  - component: {fileID: 84604586}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84604581}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
@@ -313,6 +314,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &84604586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84604581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221438f5c3c62b142826ca882c06a611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MDCamFollow
+  player: {fileID: 517067879}
 --- !u!1 &517067877
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +342,7 @@ GameObject:
   - component: {fileID: 517067882}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: MDPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 517067877}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.3, y: 0.3, z: 0}
+  m_LocalPosition: {x: -6.6, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -492,7 +506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ae0f1e4a09da44a86ac045b5c13b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MDMovement
-  jumpForce: 8
+  jumpForce: 10
+  moveSpeed: 5
 --- !u!1001 &1200833043
 PrefabInstance:
   m_ObjectHideFlags: 0
