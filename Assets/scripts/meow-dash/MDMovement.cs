@@ -78,8 +78,10 @@ public class MDMovement : MonoBehaviour
 
         if (isDashing)
         {
+            animator.SetBool("isDashing", true);
             rb.linearVelocity = new Vector2(dashSpeed, rb.linearVelocity.y);
             dashTimer -= Time.fixedDeltaTime;
+
 
             if(dashTimer <= 0f)
             {
@@ -91,6 +93,7 @@ public class MDMovement : MonoBehaviour
         else
         {
             rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+            animator.SetBool("isDashing", false);
         }
     }
 

@@ -452,7 +452,7 @@ MonoBehaviour:
   groundCheck: {fileID: 755743513}
   groundCheckRadius: 0.15
   dashSpeed: 10
-  dashDuration: 0.6
+  dashDuration: 0.8
   dashCooldownDuration: 0.3
   groundLayer:
     serializedVersion: 2
