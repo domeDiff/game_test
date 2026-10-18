@@ -10,6 +10,10 @@ public class MDMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.10f;
+
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashDuration = 1f;
+    [SerializeField] private float dashCooldownDuration = 0.3f;
     [SerializeField] private LayerMask groundLayer;
 
 
@@ -17,6 +21,9 @@ public class MDMovement : MonoBehaviour
     private bool wasGrounded;
     private bool hasDoubleJump = true;
     private bool isGrounded;
+    private bool isDashing;
+    private float dashTimer;
+    private float dashCooldownTimer;
     private Rigidbody2D rb;
     private InputSystem_Actions inputAction;
 
@@ -42,14 +49,19 @@ public class MDMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (isGrounded && !wasGrounded)
-            hasDoubleJump = false;
+            hasDoubleJump = true;
 
         if (inputAction.Player.Jump.WasPressedThisFrame())
         {
             Jump();
         }
 
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (inputAction.Player.Sprint.WasPressedThisFrame())
+        {
+            Dash();
+        }
+
+        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             Reload();
         }
@@ -57,11 +69,34 @@ public class MDMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+       if(dashCooldownTimer > 0f)
+        {
+            dashCooldownTimer -= Time.fixedDeltaTime;
+        }
+
+        if (isDashing)
+        {
+            rb.linearVelocity = new Vector2(dashSpeed, rb.linearVelocity.y);
+            dashTimer -= Time.fixedDeltaTime;
+
+            if(dashTimer <= 0f)
+            {
+                isDashing = false;
+                dashCooldownTimer = dashCooldownDuration;
+            }
+        }
+
+        else
+        {
+            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        }
     }
 
     private void Jump()
     {
+        if (isDashing)
+            return;
+
         if (isGrounded){
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             hasDoubleJump = true;
@@ -72,6 +107,15 @@ public class MDMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce-2);
             hasDoubleJump = false;
         }
+    }
+
+    private void Dash()
+    {
+        if (isDashing || dashCooldownTimer > 0f)
+            return;
+
+        isDashing = true;
+        dashTimer = dashDuration;
     }
 
     private void Reload()
