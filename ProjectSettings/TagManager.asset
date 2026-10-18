@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - FCPlayer
+  - MDPlayer
   layers:
   - Default
   - TransparentFX
