@@ -26,11 +26,13 @@ public class MDMovement : MonoBehaviour
     private float dashCooldownTimer;
     private Rigidbody2D rb;
     private InputSystem_Actions inputAction;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         inputAction = new InputSystem_Actions();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
