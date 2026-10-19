@@ -1,0 +1,14 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+public class DDWorldManager : MonoBehaviour
+{
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("dash-destroy");
+        }
+    }
+}
