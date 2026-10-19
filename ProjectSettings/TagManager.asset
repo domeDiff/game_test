@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - FCPlayer
+  - DDPlayer
   - MDPlayer
   layers:
   - Default
