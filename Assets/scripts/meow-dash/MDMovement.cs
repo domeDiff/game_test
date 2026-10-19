@@ -1,5 +1,3 @@
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -27,6 +25,10 @@ public class MDMovement : MonoBehaviour
     private Rigidbody2D rb;
     private InputSystem_Actions inputAction;
     private Animator animator;
+
+    private static readonly int isDashingHash = Animator.StringToHash("isDashing");
+    private static readonly int isJumpingHash = Animator.StringToHash("isJumping");
+
 
     private void Awake()
     {
@@ -67,6 +69,12 @@ public class MDMovement : MonoBehaviour
         {
             Reload();
         }
+
+        if (animator != null)
+        {
+            animator.SetBool(isDashingHash, isDashing);
+            animator.SetBool(isJumpingHash, !isGrounded);
+        }
     }
 
     private void FixedUpdate()
@@ -78,7 +86,6 @@ public class MDMovement : MonoBehaviour
 
         if (isDashing)
         {
-            animator.SetBool("isDashing", true);
             rb.linearVelocity = new Vector2(dashSpeed, rb.linearVelocity.y);
             dashTimer -= Time.fixedDeltaTime;
 
@@ -93,7 +100,6 @@ public class MDMovement : MonoBehaviour
         else
         {
             rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
-            animator.SetBool("isDashing", false);
         }
     }
 
