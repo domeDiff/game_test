@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MDCamFollow : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+private Transform player;
     private new Camera camera;
 
     private void Awake()
@@ -16,6 +16,7 @@ public class MDCamFollow : MonoBehaviour
         if(player != null)
         {
             Vector3 newPositon = player.position;
+            newPositon.z = camera.transform.position.z;
 
             camera.transform.position = newPositon;
         }
