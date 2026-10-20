@@ -8,6 +8,8 @@ TagManager:
   - FCPlayer
   - DDPlayer
   - MDPlayer
+  - DestroyObstacle
+  - DestroyPlayer
   layers:
   - Default
   - TransparentFX

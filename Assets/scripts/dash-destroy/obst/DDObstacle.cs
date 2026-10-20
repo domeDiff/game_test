@@ -1,19 +1,21 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DDObstacle : MonoBehaviour
 {
     [SerializeField] private float scaleSpeed = 0.5f;
     [SerializeField] private float minScale = 0.2f;
     [SerializeField] private float rotationSpeed = .5f;
+    private GameObject player;
+    private float randomSpeed;
 
-    [SerializeField] private float randomRotation;
-    private Transform player;
-
-    private void Start()
+    private void Awake()
     {
-        randomRotation = Random.Range(0, 360);
-        gameObject.transform.Rotate(0f,0f,randomRotation);
-        player = GameObject.FindGameObjectWithTag("DDPlayer").transform;
+        transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+        randomSpeed = Random.Range(-rotationSpeed, rotationSpeed);
+
+        player = GameObject.FindGameObjectWithTag("DDPlayer");
     }
 
     private void Update()
@@ -23,10 +25,16 @@ public class DDObstacle : MonoBehaviour
 
         if(transform.localScale.x > minScale)
         {
-            transform.localScale -= Vector3.one * scaleSpeed * Time.deltaTime;
+            transform.localScale -= scaleSpeed * Time.deltaTime * Vector3.one;
+
+            if(transform.localScale.x < 0.3f)
+            {
+                Destroy(gameObject);
+            }
         }
 
+
         //Rotation
-        gameObject.transform.Rotate(0f, 0f, rotationSpeed);
+        gameObject.transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
     }
 }
