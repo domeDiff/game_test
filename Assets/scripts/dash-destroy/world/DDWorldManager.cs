@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstSpawner obstSpawner;
+    [SerializeField] private DDObstacle obstacleProperty;
     private bool isAlive = true;
     private float score = 0f;
     private float scoreMultiplier = 10f;
@@ -26,13 +27,13 @@ public class DDWorldManager : MonoBehaviour
 
             if(score >= 100f && !reach100)
             {
-                IncreaseDiff(3);
+                IncreaseDiff(3, 25);
                 reach100 = true;
             }
 
             if(score >=200f && !reach200)
             {
-                IncreaseDiff(1);
+                IncreaseDiff(1, 30);
                 reach200 = true;
             }
 
@@ -46,8 +47,9 @@ public class DDWorldManager : MonoBehaviour
         }
     }
 
-    private void IncreaseDiff(int val)
+    private void IncreaseDiff(int spawnTime, float rotateSpeed)
     {
-        obstSpawner.Diff(val);
+        obstSpawner.Diff(spawnTime);
+        obstacleProperty.IncreaseDiff(rotateSpeed);
     }
 }

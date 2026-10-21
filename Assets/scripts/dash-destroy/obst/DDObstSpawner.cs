@@ -40,7 +40,7 @@ public class DDObstSpawner : MonoBehaviour
         
     }
 
-    public void Diff(float spawnSpeed, int obstPrefabLength)
+    public void Diff(float spawnSpeed)
     {
         spawnTimer = spawnSpeed;
         timer = spawnTimer;
