@@ -32,9 +32,12 @@ public class DDObstacle : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-
         //Rotation
         gameObject.transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
+    }
+
+    public void IncreaseDiff(float rotateSpeed)
+    {
+        rotationSpeed = rotateSpeed;
     }
 }

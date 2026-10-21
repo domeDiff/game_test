@@ -7,6 +7,8 @@ public class DDObstSpawner : MonoBehaviour
     [SerializeField] private float spawnTimer = 5f;
     [SerializeField] private DDWorldManager worldManager;
 
+    [SerializeField] private int spawnIndex = 0;
+
     [SerializeField] private float timer;
     public float SpawnTimer => spawnTimer;
 
@@ -26,14 +28,19 @@ public class DDObstSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        int randomIndex = Random.Range(0, obstPrefab.Length);
+        for(int i = 0; i <= obstPrefab[spawnIndex]; i++)
+        {
+            int randIndex = Random.Range(0, spawnIndex);
 
-        Instantiate(obstPrefab[randomIndex], transform.position, Quaternion.identity);
+            Instantiate(obstPrefab[randIndex], transform.position, Quaternion.identity);
 
-        Debug.Log("Obstacle Spawned");
+            Debug.Log("Obstacle Spawned");
+        }
+
+        
     }
 
-       public void Diff(float spawnSpeed)
+    public void Diff(float spawnSpeed)
     {
         spawnTimer = spawnSpeed;
         timer = spawnTimer;
