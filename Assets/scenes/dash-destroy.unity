@@ -372,6 +372,8 @@ MonoBehaviour:
   - {fileID: 6676122477167665280, guid: a41bbb57f0b729443a8067014d382883, type: 3}
   - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
   - {fileID: 6676122477167665280, guid: 5ec907acda960c648bce31cce7796899, type: 3}
+  - {fileID: 6676122477167665280, guid: 2e7a0c16f0ddd7148a1aefbfc1c96e81, type: 3}
+  - {fileID: 6676122477167665280, guid: 599808f2d30bd8342b85554eb7bb5738, type: 3}
   spawnTimer: 5
   worldManager: {fileID: 1154592438}
   timer: 0
