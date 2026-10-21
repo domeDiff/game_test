@@ -6,9 +6,8 @@ public class DDPlayerController : MonoBehaviour
 {
     [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float dashSpeed = 5f;
-    [SerializeField] private TrailRenderer trail;
-
-
+    [SerializeField] private ParticleSystem desAnim;
+    [SerializeField] private DDWorldManager worldManager;
     private bool isDashing;
     private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
@@ -34,12 +33,16 @@ public class DDPlayerController : MonoBehaviour
                 StartCoroutine(DashMove(direction.normalized));
             }
         }
+
+        if (!worldManager.isAlive)
+        {
+            Instantiate(desAnim, transform.position, Quaternion.identity);
+        }
     }
 
     private IEnumerator DashMove(Vector2 direction)
     {
         isDashing = true;
-        trail.emitting = true;
 
         Vector2 originalPos = rb.position;
         Vector2 targetPos = originalPos + direction * dashDistance;
@@ -63,6 +66,5 @@ public class DDPlayerController : MonoBehaviour
         rb.position = originalPos;
 
         isDashing = false;
-        trail.emitting = false;
     }
 }
