@@ -150,37 +150,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &658504045
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658504046}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: DDPlayer
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &658504046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658504045}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.42021, y: 0.79661, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1110903116
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825360343}
   - component: {fileID: 1825360342}
-  - component: {fileID: 1825360345}
+  - component: {fileID: 1825360347}
   - component: {fileID: 1825360344}
   - component: {fileID: 1825360346}
   m_Layer: 0
@@ -477,7 +446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1825360342
 SpriteRenderer:
   serializedVersion: 2
@@ -579,22 +548,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1825360345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825360341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2fbf2d2f1f2ee4db03aecc98d5299a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerController
-  dashDistance: 1
-  dashSpeed: 5
-  desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
-  worldManager: {fileID: 1154592438}
 --- !u!58 &1825360346
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -631,6 +584,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1825360347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825360341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ec136d18bbc524693217b6525f52fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerMovement
+  dashDistance: 1.3
+  dashSpeed: 5
+  inputBufferTime: 0.06
+  desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
+  worldManager: {fileID: 1154592438}
 --- !u!1 &2080478602
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,4 +749,3 @@ SceneRoots:
   - {fileID: 1110903118}
   - {fileID: 636226999}
   - {fileID: 1604261229}
-  - {fileID: 658504046}

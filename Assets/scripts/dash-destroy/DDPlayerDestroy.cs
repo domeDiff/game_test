@@ -5,27 +5,21 @@ public class DDPlayerDestroy : MonoBehaviour
 {
     private DDWorldManager worldManager;
 
-    private bool isInvincible;
-    
+    private GameObject player;
+    [SerializeField] private ParticleSystem des;
     private void Awake()
     {
         worldManager = FindAnyObjectByType<DDWorldManager>();
+        player = GameObject.FindGameObjectWithTag("DDPlayer");
+        des = player.GetComponent<ParticleSystem>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.root.CompareTag("DDPlayer"))
+        if (collision.CompareTag("DDPlayer"))
         {
-            if (Keyboard.current.iKey.isPressed)
-            {
-                isInvincible = true;
-            }
-
-            else
-            {
-                collision.transform.root.gameObject.SetActive(false);
-
-                Debug.Log("des");
-            }
+            player.SetActive(false);
+            Instantiate(des, transform.position, Quaternion.identity);
+            Debug.Log("des");
 
             worldManager.Death();
 
