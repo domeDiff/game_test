@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3211319796568356741}
   - component: {fileID: 6357663367602183873}
-  - component: {fileID: 2952358758497855203}
+  - component: {fileID: 8711551709220824263}
   m_Layer: 0
   m_Name: rect
   m_TagString: Untagged
@@ -400,7 +400,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2952358758497855203
+--- !u!114 &8711551709220824263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,7 +414,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DDObstacle
   scaleSpeed: 5
   minScale: 0.2
-  rotationSpeed: 20
 --- !u!1 &7709714154640444030
 GameObject:
   m_ObjectHideFlags: 0
