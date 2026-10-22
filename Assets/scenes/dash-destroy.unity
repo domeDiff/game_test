@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 1825360347}
   - component: {fileID: 1825360344}
   - component: {fileID: 1825360346}
+  - component: {fileID: 1825360348}
   m_Layer: 0
   m_Name: Player
   m_TagString: DDPlayer
@@ -601,6 +602,28 @@ MonoBehaviour:
   inputBufferTime: 0.06
   desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
   worldManager: {fileID: 1154592438}
+--- !u!95 &1825360348
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825360341}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d733ac0975a5e0a4fae1aed125bdb52a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2080478602
 GameObject:
   m_ObjectHideFlags: 0
