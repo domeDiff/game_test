@@ -760,13 +760,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   fadePanel: {fileID: 27672827}
   fadeDuration: 0.5
-  bestScoreText: {fileID: 1020409933}
   settingsPanel: {fileID: 873198929}
-  bestScoreGameObject: {fileID: 1020409931}
   Title: {fileID: 591779018}
   buttonParent: {fileID: 994068657}
-  characterSelectPanel: {fileID: 0}
-  menuCatAnim: {fileID: 0}
 --- !u!1 &257602951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,8 +1170,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ad0181e69907aaf449a98bf48ce6c73c, type: 2}
+  m_sharedMaterial: {fileID: -1547446656285900993, guid: ad0181e69907aaf449a98bf48ce6c73c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1241,7 +1237,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &624908518
@@ -3402,7 +3398,7 @@ GameObject:
   - component: {fileID: 1574329465}
   - component: {fileID: 1574329464}
   m_Layer: 5
-  m_Name: play
+  m_Name: credit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3447,7 +3443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Char
+  m_text: Credit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad0181e69907aaf449a98bf48ce6c73c, type: 2}
   m_sharedMaterial: {fileID: -1547446656285900993, guid: ad0181e69907aaf449a98bf48ce6c73c, type: 2}
@@ -4324,7 +4320,7 @@ GameObject:
   - component: {fileID: 1970097700}
   - component: {fileID: 1970097699}
   m_Layer: 5
-  m_Name: CharButton
+  m_Name: CreditButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4348,7 +4344,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -126}
-  m_SizeDelta: {x: 200, y: 60}
+  m_SizeDelta: {x: 230, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1970097699
 MonoBehaviour:
