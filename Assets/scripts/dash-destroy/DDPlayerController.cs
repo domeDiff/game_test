@@ -6,10 +6,11 @@ public class DDPlayerController : MonoBehaviour
 {
     [SerializeField] private float dashDistance = 3f;
     [SerializeField] private float dashSpeed = 5f;
-    [SerializeField] private TrailRenderer trail;
-
-
+    [SerializeField] private ParticleSystem desAnim;
+    private bool deathAnimPlayed;
+    [SerializeField] private DDWorldManager worldManager;
     private bool isDashing;
+    private Vector2 previousInput;
     private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
 
@@ -25,21 +26,38 @@ public class DDPlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (inputActions.Player.Move.WasPressedThisFrame() && !isDashing)
+        if(!worldManager.isAlive || isDashing)
         {
-            Vector2 direction = inputActions.Player.Move.ReadValue<Vector2>();
+            previousInput = Vector2.zero;
+            return;
+        }
 
-            if(direction != Vector2.zero)
+        Vector2 input = inputActions.Player.Move.ReadValue<Vector2>();
+
+        bool newDirectionPressed = input != Vector2.zero && (previousInput == Vector2.zero || input != previousInput);
+
+        if (newDirectionPressed)
+        {
+            Vector2 direction = Get8Direction(input);
+            StartCoroutine(DashMove(direction));
+        }
+
+        if (!worldManager.isAlive)
+        {
+            if (!deathAnimPlayed)
             {
-                StartCoroutine(DashMove(direction.normalized));
+                Instantiate(desAnim, transform.position, Quaternion.identity);
+                deathAnimPlayed = true;
             }
+
+            return;
         }
     }
+
 
     private IEnumerator DashMove(Vector2 direction)
     {
         isDashing = true;
-        trail.emitting = true;
 
         Vector2 originalPos = rb.position;
         Vector2 targetPos = originalPos + direction * dashDistance;
@@ -63,6 +81,16 @@ public class DDPlayerController : MonoBehaviour
         rb.position = originalPos;
 
         isDashing = false;
-        trail.emitting = false;
+    }
+
+    private Vector2 Get8Direction(Vector2 input)
+    {
+        float angle = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+
+        angle = Mathf.Round(angle / 45f) * 45f;
+
+        float radians = angle * Mathf.Deg2Rad;
+
+        return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians)).normalized;
     }
 }

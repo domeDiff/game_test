@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -7,10 +8,12 @@ public class DDObstSpawner : MonoBehaviour
     [SerializeField] private float spawnTimer = 5f;
     [SerializeField] private DDWorldManager worldManager;
 
-    [SerializeField] private int spawnIndex = 0;
+    [SerializeField] private int diffSubVal = 4;
 
     [SerializeField] private float timer;
     public float SpawnTimer => spawnTimer;
+
+    
 
     private void Update()
     {
@@ -28,22 +31,19 @@ public class DDObstSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        for(int i = 0; i <= obstPrefab[spawnIndex]; i++)
-        {
-            int randIndex = Random.Range(0, spawnIndex);
+        int spawnIndex = Random.Range(0, (obstPrefab.Length-diffSubVal));
 
-            Instantiate(obstPrefab[randIndex], transform.position, Quaternion.identity);
-
-            Debug.Log("Obstacle Spawned");
-        }
-
+        Instantiate(obstPrefab[spawnIndex], transform.position, Quaternion.identity);
+        
+        Debug.Log("Obstacle Spawned");
         
     }
 
-    public void Diff(float spawnSpeed)
+    public void Diff(float spawnSpeed, int diffSpawnIndex)
     {
         spawnTimer = spawnSpeed;
         timer = spawnTimer;
+        diffSubVal = diffSpawnIndex;
     }
 }
 
