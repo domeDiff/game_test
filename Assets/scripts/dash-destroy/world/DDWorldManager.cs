@@ -6,17 +6,19 @@ public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstSpawner obstSpawner;
     [SerializeField] private DDObstacle obstacleProperty;
+
+    public static DDWorldManager Instance;
     public bool isAlive = true;
-    private float score = 0f;
+    private float score;
+
     private float scoreMultiplier = 10f;
     private bool reach100 = false;
     private bool reach200 = false;
     private bool reach300 = false;
     private bool reach400 = false;
     private bool reach500 = false;
-
-    public bool IsAlive => isAlive;
     public float Score => score;
+    public bool IsAlive => isAlive;
 
     public void Death()
     {
@@ -59,9 +61,6 @@ public class DDWorldManager : MonoBehaviour
                 IncreaseDiff(3, 0);
                 reach500 = true;
             }
-
-
-            Debug.Log("score: " + Mathf.FloorToInt(score));
 
         }
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)

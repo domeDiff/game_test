@@ -3,9 +3,9 @@ using UnityEngine.UIElements;
 
 public class DDObstacle : MonoBehaviour
 {
-     private float orgScaleSize = 2f;
+    [SerializeField] private float orgScaleSize = 2f;
     [SerializeField] private float minScale = 0.2f;
-     private float orgRotationSpeed = 10f;
+    [SerializeField]private float orgRotationSpeed = 10f;
     private GameObject player;
     private float randomSpeed;
 
