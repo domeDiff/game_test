@@ -147,6 +147,7 @@ public class DDPlayerMovement : MonoBehaviour
         {
             Instantiate(desAnim, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            DDWorldManager.Instance.isAlive = false;
         }
     }
 

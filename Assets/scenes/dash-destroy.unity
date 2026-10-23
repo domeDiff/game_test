@@ -1096,8 +1096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ec136d18bbc524693217b6525f52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDPlayerMovement
-  dashDistance: 1.3
-  dashSpeed: 6
+  dashDistance: 5
+  dashSpeed: 15
   inputBufferTime: 0.06
   desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
   worldManager: {fileID: 1154592438}
