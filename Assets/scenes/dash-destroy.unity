@@ -741,6 +741,37 @@ MonoBehaviour:
   obstSpawner: {fileID: 1307590566}
   obstacleProperty: {fileID: 279726213}
   isAlive: 1
+--- !u!1 &1184931940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184931941}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: DDPlayer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1184931941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184931940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 416.01892, y: 351.86066, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1307590564
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,37 +822,6 @@ MonoBehaviour:
   worldManager: {fileID: 1154592438}
   diffSubVal: 0
   timer: 0
---- !u!1 &1320814534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1320814535}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: DDPlayer
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1320814535
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320814534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336863636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,8 +1269,8 @@ SceneRoots:
   - {fileID: 1307590565}
   - {fileID: 1825360343}
   - {fileID: 1110903118}
-  - {fileID: 1320814535}
   - {fileID: 1336863640}
   - {fileID: 410469432}
   - {fileID: 545108151}
   - {fileID: 279726214}
+  - {fileID: 1184931941}

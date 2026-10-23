@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 770606998862333771}
   - component: {fileID: 4526803063068995510}
   - component: {fileID: 6422578266183169111}
-  - component: {fileID: 7421654509804064942}
   m_Layer: 0
   m_Name: DestroyObst
   m_TagString: DestroyObstacle
@@ -277,20 +276,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7421654509804064942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578518186379083023}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c43b84b79d8de45aa67e5967b36835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDObstDestroy
-  prefab: {fileID: 889092607067756317}
-  obstacleDes: 0
 --- !u!1 &889092607067756317
 GameObject:
   m_ObjectHideFlags: 0
