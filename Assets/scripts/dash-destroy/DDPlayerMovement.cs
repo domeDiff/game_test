@@ -50,12 +50,6 @@ public class DDPlayerMovement : MonoBehaviour
         // Death check first so the animation can actually play
         if (!worldManager.isAlive)
         {
-            if (!deathAnimPlayed)
-            {
-                Instantiate(desAnim, transform.position, Quaternion.identity);
-                deathAnimPlayed = true;
-            }
-
             previousInput = Vector2.zero;
             isBuffering = false;
             return;
@@ -139,6 +133,21 @@ public class DDPlayerMovement : MonoBehaviour
 
         int index = Mathf.RoundToInt(angle / 45f) % 8;
         return EightDirections[index];
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DestroyObstacle"))
+        {
+            Destroy(other.gameObject);
+            DDWorldManager.Instance.IncreaseObstDes();
+        }
+
+        if (other.CompareTag("DestroyPlayer"))
+        {
+            Instantiate(desAnim, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
 }

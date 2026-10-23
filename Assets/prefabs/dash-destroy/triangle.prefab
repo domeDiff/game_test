@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 608666397727871513}
   - component: {fileID: 4929446282797544968}
   - component: {fileID: 1490262451677591910}
-  - component: {fileID: 2197894438125191057}
   m_Layer: 0
   m_Name: DestroyPlayer_1
   m_TagString: DestroyPlayer
@@ -139,18 +138,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2197894438125191057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210584839827302029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f993d4786660d4f9dc074f834ea5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerDestroy
 --- !u!1 &578518186379083023
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,12 +284,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578518186379083023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80c43b84b79d8de45aa67e5967b36835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDObstDestroy
   prefab: {fileID: 889092607067756317}
+  obstacleDes: 0
 --- !u!1 &889092607067756317
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,10 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3152dc8ff00fd749a7051b570157450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDObstacle
-  scaleSpeed: 5
+  orgScaleSize: 7
   minScale: 0.2
-  rotationSpeed: 20
-  randomRotation: 0
+  orgRotationSpeed: 20
 --- !u!1 &8260814744643294161
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +352,6 @@ GameObject:
   - component: {fileID: 9134040245065774274}
   - component: {fileID: 4271975595386408136}
   - component: {fileID: 6650835524354017190}
-  - component: {fileID: 2318756235291102424}
   m_Layer: 0
   m_Name: DestroyPlayer_2
   m_TagString: DestroyPlayer
@@ -493,15 +479,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2318756235291102424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8260814744643294161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f993d4786660d4f9dc074f834ea5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerDestroy

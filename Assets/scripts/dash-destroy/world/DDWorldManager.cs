@@ -11,6 +11,7 @@ public class DDWorldManager : MonoBehaviour
     public bool isAlive = true;
     private float score;
 
+    private int obstacleDestroyed;
     private float scoreMultiplier = 10f;
     private bool reach100 = false;
     private bool reach200 = false;
@@ -20,6 +21,12 @@ public class DDWorldManager : MonoBehaviour
     public float Score => score;
     public bool IsAlive => isAlive;
 
+    public int ObstacleDestroyed => obstacleDestroyed;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void Death()
     {
         isAlive = false;
@@ -77,5 +84,10 @@ public class DDWorldManager : MonoBehaviour
     private void IncreaseObstacleProp(float rotateSpeed, float scaleSize)
     {
         obstacleProperty.IncreaseDiff(rotateSpeed, scaleSize);
+    }
+
+    public void IncreaseObstDes()
+    {
+        obstacleDestroyed++;
     }
 }
