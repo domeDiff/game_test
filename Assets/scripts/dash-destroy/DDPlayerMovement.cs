@@ -139,15 +139,21 @@ public class DDPlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("DestroyObstacle"))
         {
-            Destroy(other.gameObject);
             DDWorldManager.Instance.IncreaseObstDes();
+
+            ObstacleDeath obstacleDeath = other.GetComponentInParent<ObstacleDeath>();
+
+            if (obstacleDeath != null)
+                obstacleDeath.ObjectDestroy();
+            else
+                Debug.LogWarning("No obst found above: " + other.name, other);
         }
 
         if (other.CompareTag("DestroyPlayer"))
         {
+            DDWorldManager.Instance.isAlive = false;
             Instantiate(desAnim, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            DDWorldManager.Instance.isAlive = false;
         }
     }
 

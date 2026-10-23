@@ -342,10 +342,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7614125224722345347}
   - component: {fileID: 6308918504739715559}
+  - component: {fileID: 4967137805260508325}
   m_Layer: 0
   m_Name: triangle
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -382,6 +383,25 @@ MonoBehaviour:
   orgScaleSize: 7
   minScale: 0.2
   orgRotationSpeed: 20
+--- !u!114 &4967137805260508325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889092607067756317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0375fe33fff885468dc62b9adfdf3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleDeath
+  minGravityScale: 6
+  maxGravityScale: 8
+  minMass: 12
+  maxMass: 15
+  burstForce: 1
+  spinForce: 2
+  destroyDelay: 1.5
 --- !u!1 &8260814744643294161
 GameObject:
   m_ObjectHideFlags: 0
