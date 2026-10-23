@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7085797163259989101}
   - component: {fileID: 1124322892528411297}
   - component: {fileID: 6338577682276957540}
-  - component: {fileID: 4375743037149433221}
   m_Layer: 0
   m_Name: top
   m_TagString: DestroyObstacle
@@ -139,19 +138,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4375743037149433221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458084274811691044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c43b84b79d8de45aa67e5967b36835, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDObstDestroy
-  prefab: {fileID: 6676122477167665280}
 --- !u!1 &2306284295720016066
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +149,6 @@ GameObject:
   - component: {fileID: 1022510360484425238}
   - component: {fileID: 8355153590656226136}
   - component: {fileID: 5718391038881934074}
-  - component: {fileID: 1179371263503890520}
   m_Layer: 0
   m_Name: right
   m_TagString: DestroyPlayer
@@ -291,19 +276,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1179371263503890520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306284295720016066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f993d4786660d4f9dc074f834ea5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerDestroy
-  des: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
 --- !u!1 &6676122477167665280
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3211319796568356741}
   - component: {fileID: 6357663367602183873}
-  - component: {fileID: 2952358758497855203}
+  - component: {fileID: 8711551709220824263}
   m_Layer: 0
   m_Name: rect
   m_TagString: Untagged
@@ -400,7 +372,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2952358758497855203
+--- !u!114 &8711551709220824263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,9 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3152dc8ff00fd749a7051b570157450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDObstacle
-  scaleSpeed: 5
+  orgScaleSize: 2
   minScale: 0.2
-  rotationSpeed: 20
+  orgRotationSpeed: 10
 --- !u!1 &7709714154640444030
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +398,6 @@ GameObject:
   - component: {fileID: 7893232782478657709}
   - component: {fileID: 6358378591056619552}
   - component: {fileID: 7047377320408552868}
-  - component: {fileID: 5796303308017938739}
   m_Layer: 0
   m_Name: bottom
   m_TagString: DestroyPlayer
@@ -554,19 +525,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5796303308017938739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709714154640444030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f993d4786660d4f9dc074f834ea5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerDestroy
-  des: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
 --- !u!1 &7721188267899036185
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +536,6 @@ GameObject:
   - component: {fileID: 2427742960845160426}
   - component: {fileID: 7028636771842413605}
   - component: {fileID: 4462995947008200654}
-  - component: {fileID: 3967379605164299328}
   m_Layer: 0
   m_Name: left
   m_TagString: DestroyPlayer
@@ -706,16 +663,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3967379605164299328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721188267899036185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68f993d4786660d4f9dc074f834ea5b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDPlayerDestroy
-  des: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}

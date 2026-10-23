@@ -3,9 +3,9 @@ using UnityEngine.UIElements;
 
 public class DDObstacle : MonoBehaviour
 {
-    [SerializeField] private float scaleSpeed = 0.5f;
+    [SerializeField] private float orgScaleSize = 2f;
     [SerializeField] private float minScale = 0.2f;
-    [SerializeField] private float rotationSpeed = .5f;
+    [SerializeField]private float orgRotationSpeed = 10f;
     private GameObject player;
     private float randomSpeed;
 
@@ -13,7 +13,7 @@ public class DDObstacle : MonoBehaviour
     {
         transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
 
-        randomSpeed = Random.Range(-rotationSpeed, rotationSpeed);
+        randomSpeed = Random.Range(-orgRotationSpeed, orgRotationSpeed);
 
         player = GameObject.FindGameObjectWithTag("DDPlayer");
     }
@@ -25,7 +25,7 @@ public class DDObstacle : MonoBehaviour
 
         if(transform.localScale.x > minScale)
         {
-            transform.localScale -= scaleSpeed * Time.deltaTime * Vector3.one;
+            transform.localScale -= orgScaleSize * Time.deltaTime * Vector3.one;
 
             if(transform.localScale.x < 0.3f)
             {
@@ -36,8 +36,9 @@ public class DDObstacle : MonoBehaviour
         gameObject.transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
     }
 
-    public void IncreaseDiff(float rotateSpeed)
+    public void IncreaseDiff(float rotateSpeed, float scaleSize)
     {
-        rotationSpeed = rotateSpeed;
+        orgRotationSpeed = rotateSpeed;
+        orgScaleSize = scaleSize;
     }
 }
