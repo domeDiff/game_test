@@ -21,6 +21,9 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
+    m_path: Assets/scenes/dash-destroy_main_menu.unity
+    m_guid: a63af068b01e0e84baca6b691f07adb4
+  - m_enabled: 1
     m_path: Assets/scenes/dash-destroy.unity
     m_guid: b2e43b5d3c535c04e86a733bdfd0b6da
   m_HasScriptingDefines: 0
