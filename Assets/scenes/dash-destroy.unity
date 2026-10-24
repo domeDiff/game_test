@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 1110903118}
   - component: {fileID: 1110903117}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: music_player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f6c25b8f0e4ff184095fac93d06491b4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -817,6 +817,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDObstSpawner
   obstPrefab:
+  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
+  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
+  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
+  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
+  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
   - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
   spawnTimer: 5
   worldManager: {fileID: 1154592438}
@@ -1096,8 +1101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ec136d18bbc524693217b6525f52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDPlayerMovement
-  dashDistance: 5
-  dashSpeed: 15
+  dashDistance: 1.3
+  dashSpeed: 6
   inputBufferTime: 0.06
   desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
   worldManager: {fileID: 1154592438}
