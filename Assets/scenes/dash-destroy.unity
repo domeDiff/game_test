@@ -119,53 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &279726212
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 279726214}
-  - component: {fileID: 279726213}
-  m_Layer: 0
-  m_Name: obstProp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &279726213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279726212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3152dc8ff00fd749a7051b570157450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDObstacle
-  orgScaleSize: 2
-  minScale: 0.2
-  orgRotationSpeed: 10
---- !u!4 &279726214
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279726212}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11939, y: -0.10837, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410469429
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +529,7 @@ GameObject:
   - component: {fileID: 1110903118}
   - component: {fileID: 1110903117}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: music_player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +548,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f6c25b8f0e4ff184095fac93d06491b4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -720,7 +673,7 @@ Transform:
   m_GameObject: {fileID: 1154592436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.25941, y: 1.8868, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -738,9 +691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9440ab034c492247ac66b3c32bff6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDWorldManager
-  obstSpawner: {fileID: 1307590566}
-  obstacleProperty: {fileID: 279726213}
+  obstTriangleSpawner: {fileID: 1307590566}
   isAlive: 1
+  maxScore: 2000
+  cycleTime: 1
 --- !u!1 &1184931940
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,14 +767,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1307590564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f471b5aa47f6a4582c1fe4c2008d15, type: 3}
+  m_Script: {fileID: 11500000, guid: ec6922361f43c0849908051af155985d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DDObstSpawner
-  obstPrefab:
-  - {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
-  spawnTimer: 5
+  m_EditorClassIdentifier: Assembly-CSharp::DDObstacleTriangle
+  obstPrefab: {fileID: 889092607067756317, guid: 4d5d282a13c4a7146b79bf78ddad79a9, type: 3}
   worldManager: {fileID: 1154592438}
-  diffSubVal: 0
+  spawnTimer: 3
+  spawnCount: 2
+  staggerDelay: 0.25
+  Center: {fileID: 1825360343}
+  spawnRadius: 1
   timer: 0
 --- !u!1 &1336863636
 GameObject:
@@ -1096,8 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ec136d18bbc524693217b6525f52fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DDPlayerMovement
-  dashDistance: 5
-  dashSpeed: 15
+  dashDistance: 3
+  dashSpeed: 7
   inputBufferTime: 0.06
   desAnim: {fileID: 3860470306615466595, guid: 366ef06ec4b72d345be38c84c20888d8, type: 3}
   worldManager: {fileID: 1154592438}
@@ -1272,5 +1228,4 @@ SceneRoots:
   - {fileID: 1336863640}
   - {fileID: 410469432}
   - {fileID: 545108151}
-  - {fileID: 279726214}
   - {fileID: 1184931941}

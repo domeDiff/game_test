@@ -10,6 +10,7 @@ TagManager:
   - MDPlayer
   - DestroyObstacle
   - DestroyPlayer
+  - DDMainObst
   layers:
   - Default
   - TransparentFX

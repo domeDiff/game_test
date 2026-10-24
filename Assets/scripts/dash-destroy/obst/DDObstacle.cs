@@ -1,21 +1,44 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DDObstacle : MonoBehaviour
 {
-    [SerializeField] private float orgScaleSize = 2f;
-    [SerializeField] private float minScale = 0.2f;
-    [SerializeField]private float orgRotationSpeed = 10f;
+    public static float RotationSpeed = 10f;
+    public static float Lifetime = 3f;   // seconds from spawn until fully shrunk
+
+    public static void SetDifficulty(float rotateSpeed, float lifetime)
+    {
+        RotationSpeed = rotateSpeed;
+        Lifetime = lifetime;
+    }
+
+    public static void ResetDifficulty()
+    {
+        RotationSpeed = 10f;
+        Lifetime = 3f;
+    }
+
+    [Tooltip("Scale at which the triangle reaches the player and is destroyed (in prefab units)")]
+    [SerializeField] private float endScale = 1f;
+
     private GameObject player;
     private float randomSpeed;
+    private float startScale;
+    private float lifetime;
+    private float elapsed;
 
     private void Awake()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-
-        randomSpeed = Random.Range(-orgRotationSpeed, orgRotationSpeed);
-
         player = GameObject.FindGameObjectWithTag("DDPlayer");
+    }
+
+    private void Start()
+    {
+        // Lock in this wave's values at spawn time
+        startScale = transform.localScale.x;   // e.g. 45
+        lifetime = Mathf.Max(0.1f, Lifetime);
+
+        transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+        randomSpeed = Random.Range(-RotationSpeed, RotationSpeed);
     }
 
     private void Update()
@@ -23,22 +46,16 @@ public class DDObstacle : MonoBehaviour
         if (player == null)
             return;
 
-        if(transform.localScale.x > minScale)
+        elapsed += Time.deltaTime;
+        float t = elapsed / lifetime;
+
+        if (t >= 1f)
         {
-            transform.localScale -= orgScaleSize * Time.deltaTime * Vector3.one;
-
-            if(transform.localScale.x < 0.3f)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
+            return;
         }
-        //Rotation
-        gameObject.transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
-    }
 
-    public void IncreaseDiff(float rotateSpeed, float scaleSize)
-    {
-        orgRotationSpeed = rotateSpeed;
-        orgScaleSize = scaleSize;
+        transform.localScale = Vector3.one * Mathf.Lerp(startScale, endScale, t);
+        transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
     }
 }
