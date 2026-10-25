@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class DDObstacleTriangle : MonoBehaviour
 {
     [SerializeField] private GameObject obstPrefab;
-    [SerializeField] private float spawnTimer = 3f;
+    [SerializeField] private float spawnTimer = 2f;
     [SerializeField] private DDWorldManager worldManager;
 
 
