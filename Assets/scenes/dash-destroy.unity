@@ -775,7 +775,7 @@ MonoBehaviour:
   spawnTimer: 3
   spawnCount: 2
   staggerDelay: 0.25
-  Center: {fileID: 1825360343}
+  Center: {fileID: 1307590565}
   spawnRadius: 1
   timer: 0
 --- !u!1 &1336863636
