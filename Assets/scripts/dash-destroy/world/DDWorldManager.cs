@@ -16,6 +16,7 @@ public class DDWorldManager : MonoBehaviour
     private bool reach300 = false;
     private bool reach400 = false;
     private bool reach500 = false;
+    private bool reach600 = false;
     public float Score => score;
     public bool IsAlive => isAlive;
 
@@ -41,36 +42,38 @@ public class DDWorldManager : MonoBehaviour
 
             if (score >= 100f && !reach100)
             {
-                IncreaseDiff(2.5f);
+                IncreaseDiff(2f);
 
-                IncreaseObstacleProp(15f, 15f);
+                IncreaseObstacleProp(13f, 13f);
                 reach100 = true;
             }
 
             if (score >= 200f && !reach200)
             {
-                IncreaseObstacleProp(20f, 20f);
+                IncreaseObstacleProp(17f, 17f);
 
-                IncreaseDiff(2f);
+                IncreaseDiff(1.5f);
                 reach200 = true;
             }
 
             if (score >= 300f && !reach300)
             {
-                IncreaseDiff(1.5f);
-                IncreaseObstacleProp(30f, 30f);
+                IncreaseDiff(1f);
+                IncreaseObstacleProp(23f, 23f);
                 reach300 = true;
             }
 
             if (score >= 400f && !reach400)
             {
-                IncreaseDiff(1f);
+                IncreaseObstacleProp(29f, 29f);
+                IncreaseDiff(0.8f);
                 reach400 = true;
             }
 
             if (score >= 500f && !reach500)
             {
-                IncreaseDiff(.8f);
+                IncreaseObstacleProp(33f, 33f);
+                IncreaseDiff(0.5f);
                 reach500 = true;
             }
 
