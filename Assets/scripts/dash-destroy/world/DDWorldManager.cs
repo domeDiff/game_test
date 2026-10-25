@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,18 +5,19 @@ using UnityEngine.SceneManagement;
 public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstacleTriangle obstTriangleSpawner;
+    [SerializeField] private GameObject restartText;
     public static DDWorldManager Instance;
     public bool isAlive = true;
     private float score;
     private int obstacleDestroyed;
     private float scoreMultiplier = 10f;
+    private bool reach100 = false;
+    private bool reach200 = false;
+    private bool reach300 = false;
+    private bool reach400 = false;
+    private bool reach500 = false;
     public float Score => score;
     public bool IsAlive => isAlive;
-
-    [Header("Diff")]
-    [SerializeField] private float maxScore = 2000f;
-    [SerializeField] float cycleTime = 1.0f;
-    private const float ObstacleMinScale = 0.3f;
 
     public int ObstacleDestroyed => obstacleDestroyed;
 
@@ -26,48 +25,75 @@ public class DDWorldManager : MonoBehaviour
     {
         Instance = this;
         DDObstacle.ResetDifficulty();
+
     }
     public void Death()
     {
         isAlive = false;
         Debug.Log("final score: " + Mathf.FloorToInt(score));
+        restartText.SetActive(true);
     }
-
     private void Update()
     {
         if (isAlive)
         {
             score += Time.deltaTime * scoreMultiplier;
 
-            ApplyDifficulty();
-        }
+            if (score >= 100f && !reach100)
+            {
+                IncreaseDiff(2.5f);
 
+                IncreaseObstacleProp(15f, 15f);
+                reach100 = true;
+            }
+
+            if (score >= 200f && !reach200)
+            {
+                IncreaseObstacleProp(20f, 20f);
+
+                IncreaseDiff(2f);
+                reach200 = true;
+            }
+
+            if (score >= 300f && !reach300)
+            {
+                IncreaseDiff(1.5f);
+                IncreaseObstacleProp(30f, 30f);
+                reach300 = true;
+            }
+
+            if (score >= 400f && !reach400)
+            {
+                IncreaseDiff(1f);
+                reach400 = true;
+            }
+
+            if (score >= 500f && !reach500)
+            {
+                IncreaseDiff(.8f);
+                reach500 = true;
+            }
+
+        }
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("dash-destroy");
         }
     }
 
-    private void ApplyDifficulty()
+    private void IncreaseDiff(float spawnTime)
     {
-        float d = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(score / maxScore));
+        obstTriangleSpawner.Diff(spawnTime);
+    }
 
-        int count = 1 + Mathf.FloorToInt(d * 4.99f);
-        float slack = Mathf.Lerp(0.8f, 0.1f, d);
-        float perTriangle = cycleTime + slack;
-
-        float lifetime = 0.6f + count * perTriangle;
-
-        float interval = count * perTriangle + Mathf.Lerp(1.0f, 0.2f, d);
-        float stagger = Mathf.Lerp(0.5f, 0.25f, d);
-        float rotation = Mathf.Lerp(10f, 35f, d);
-
-        obstTriangleSpawner.SetWave(interval, count, stagger);
-        DDObstacle.SetDifficulty(rotation, lifetime);
+    private void IncreaseObstacleProp(float rotateSpeed, float scaleSize)
+    {
+        DDObstacle.SetDifficulty(rotateSpeed, scaleSize);
     }
 
     public void IncreaseObstDes()
     {
         obstacleDestroyed++;
     }
+
 }

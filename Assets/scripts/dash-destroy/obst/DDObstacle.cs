@@ -1,61 +1,62 @@
+
+using TMPro;
 using UnityEngine;
 
 public class DDObstacle : MonoBehaviour
 {
+    // Shared difficulty values, read by every obstacle when it spawns
     public static float RotationSpeed = 10f;
-    public static float Lifetime = 3f;   // seconds from spawn until fully shrunk
+    public static float ShrinkRate = 10f;
 
-    public static void SetDifficulty(float rotateSpeed, float lifetime)
+    [SerializeField] private GameObject diffInc;
+
+    public static void SetDifficulty(float rotateSpeed, float shrinkRate)
     {
         RotationSpeed = rotateSpeed;
-        Lifetime = lifetime;
+        ShrinkRate = shrinkRate;
     }
 
     public static void ResetDifficulty()
     {
         RotationSpeed = 10f;
-        Lifetime = 3f;
+        ShrinkRate = 10f;
     }
 
-    [Tooltip("Scale at which the triangle reaches the player and is destroyed (in prefab units)")]
-    [SerializeField] private float endScale = 1f;
+    [SerializeField] private float minScale = 0.2f;
 
     private GameObject player;
-    private float randomSpeed;
-    private float startScale;
-    private float lifetime;
-    private float elapsed;
+    private float rotationSpeed;
+    private float shrinkRate;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("DDPlayer");
+
+        // Snapshot the current difficulty, so obstacles already on screen don't change mid-life
+        shrinkRate = ShrinkRate;
     }
 
     private void Start()
     {
-        // Lock in this wave's values at spawn time
-        startScale = transform.localScale.x;   // e.g. 45
-        lifetime = Mathf.Max(0.1f, Lifetime);
-
         transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
-        randomSpeed = Random.Range(-RotationSpeed, RotationSpeed);
+        rotationSpeed = Random.Range(-RotationSpeed, RotationSpeed);
     }
 
     private void Update()
     {
-        if (player == null)
-            return;
+        if (player == null) return;
 
-        elapsed += Time.deltaTime;
-        float t = elapsed / lifetime;
-
-        if (t >= 1f)
+        if (transform.localScale.x > minScale)
         {
-            Destroy(gameObject);
-            return;
+            transform.localScale -= shrinkRate * Time.deltaTime * Vector3.one;
+
+            if (transform.localScale.x < 0.3f)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
 
-        transform.localScale = Vector3.one * Mathf.Lerp(startScale, endScale, t);
-        transform.Rotate(0f, 0f, randomSpeed * Time.deltaTime);
+        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
     }
 }
