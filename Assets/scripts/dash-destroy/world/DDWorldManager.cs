@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstacleTriangle obstTriangleSpawner;
+    [SerializeField] private GameObject restartText;
     public static DDWorldManager Instance;
     public bool isAlive = true;
     private float score;
@@ -24,11 +25,13 @@ public class DDWorldManager : MonoBehaviour
     {
         Instance = this;
         DDObstacle.ResetDifficulty();
+        restartText.SetActive(true);
     }
     public void Death()
     {
         isAlive = false;
         Debug.Log("final score: " + Mathf.FloorToInt(score));
+
     }
     private void Update()
     {
@@ -92,4 +95,5 @@ public class DDWorldManager : MonoBehaviour
     {
         obstacleDestroyed++;
     }
+
 }

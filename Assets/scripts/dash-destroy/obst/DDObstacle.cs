@@ -1,3 +1,5 @@
+
+using TMPro;
 using UnityEngine;
 
 public class DDObstacle : MonoBehaviour
@@ -6,8 +8,11 @@ public class DDObstacle : MonoBehaviour
     public static float RotationSpeed = 10f;
     public static float ShrinkRate = 10f;
 
+    [SerializeField] private GameObject diffInc;
+
     public static void SetDifficulty(float rotateSpeed, float shrinkRate)
     {
+        DDWorldManager.Instance.DiffIncTxt();
         RotationSpeed = rotateSpeed;
         ShrinkRate = shrinkRate;
     }
