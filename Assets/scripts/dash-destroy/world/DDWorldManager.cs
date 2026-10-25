@@ -25,13 +25,13 @@ public class DDWorldManager : MonoBehaviour
     {
         Instance = this;
         DDObstacle.ResetDifficulty();
-        restartText.SetActive(true);
+
     }
     public void Death()
     {
         isAlive = false;
         Debug.Log("final score: " + Mathf.FloorToInt(score));
-
+        restartText.SetActive(true);
     }
     private void Update()
     {

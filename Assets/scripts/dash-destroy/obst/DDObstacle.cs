@@ -12,7 +12,6 @@ public class DDObstacle : MonoBehaviour
 
     public static void SetDifficulty(float rotateSpeed, float shrinkRate)
     {
-        DDWorldManager.Instance.DiffIncTxt();
         RotationSpeed = rotateSpeed;
         ShrinkRate = shrinkRate;
     }
