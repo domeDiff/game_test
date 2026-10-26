@@ -15,6 +15,7 @@ public class DDWorldManager : MonoBehaviour
     private float score;
     private float quitTime = 3f;
     private float qHeldTime;
+    private bool isQuitting;
     private int obstacleDestroyed;
     private float scoreMultiplier = 10f;
     private bool reach100 = false;
@@ -116,13 +117,16 @@ public class DDWorldManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (Keyboard.current.qKey.isPressed)
+        if (isQuitting) return;
+
+        if (Keyboard.current != null && Keyboard.current.qKey.isPressed)
         {
             qHeldTime += Time.deltaTime;
             quitStatus.value = qHeldTime / quitTime;
 
             if (qHeldTime >= quitTime)
             {
+                isQuitting = true;
                 SceneManager.LoadScene("dash-destroy_main_menu");
             }
         }
