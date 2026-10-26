@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,9 +7,12 @@ public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstacleTriangle obstTriangleSpawner;
     [SerializeField] private GameObject restartText;
+    [SerializeField] private TMP_Text highScoreText;
     public static DDWorldManager Instance;
     public bool isAlive = true;
     private float score;
+    private float quitTime = 3f;
+    private float qHeldTime;
     private int obstacleDestroyed;
     private float scoreMultiplier = 10f;
     private bool reach100 = false;
@@ -16,7 +20,6 @@ public class DDWorldManager : MonoBehaviour
     private bool reach300 = false;
     private bool reach400 = false;
     private bool reach500 = false;
-    private bool reach600 = false;
     public float Score => score;
     public bool IsAlive => isAlive;
 
@@ -31,8 +34,13 @@ public class DDWorldManager : MonoBehaviour
     public void Death()
     {
         isAlive = false;
+        int finalScore = Mathf.FloorToInt(score);
         Debug.Log("final score: " + Mathf.FloorToInt(score));
         restartText.SetActive(true);
+
+        int best = Mathf.Max(DDHighScore.HighScore, finalScore);
+        highScoreText.text = "HIGH SCORE: " + best.ToString("D4");
+        highScoreText.gameObject.SetActive(true);
     }
     private void Update()
     {
@@ -59,21 +67,21 @@ public class DDWorldManager : MonoBehaviour
             if (score >= 300f && !reach300)
             {
                 IncreaseDiff(1f);
-                IncreaseObstacleProp(23f, 23f);
+                IncreaseObstacleProp(21f, 21f);
                 reach300 = true;
             }
 
             if (score >= 400f && !reach400)
             {
-                IncreaseObstacleProp(29f, 29f);
-                IncreaseDiff(0.8f);
+                IncreaseObstacleProp(25f, 25f);
+                IncreaseDiff(1f);
                 reach400 = true;
             }
 
             if (score >= 500f && !reach500)
             {
-                IncreaseObstacleProp(33f, 33f);
-                IncreaseDiff(0.5f);
+                IncreaseObstacleProp(29f, 29f);
+                IncreaseDiff(0.7f);
                 reach500 = true;
             }
 
@@ -81,6 +89,20 @@ public class DDWorldManager : MonoBehaviour
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("dash-destroy");
+        }
+
+        if((Keyboard.current != null && Keyboard.current.qKey.isPressed))
+        {
+            qHeldTime += Time.deltaTime;
+
+            if(qHeldTime >= quitTime)
+            {
+                SceneManager.LoadScene("dash-destroy_main_menu");
+            }
+        }
+        else
+        {
+            qHeldTime = 0f;
         }
     }
 

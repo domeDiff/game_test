@@ -22,7 +22,7 @@ public class DDObstacle : MonoBehaviour
         ShrinkRate = 10f;
     }
 
-    [SerializeField] private float minScale = 0.2f;
+    [SerializeField] private float minScale = 0.1f;
 
     private GameObject player;
     private float rotationSpeed;
@@ -50,7 +50,7 @@ public class DDObstacle : MonoBehaviour
         {
             transform.localScale -= shrinkRate * Time.deltaTime * Vector3.one;
 
-            if (transform.localScale.x < 0.3f)
+            if (transform.localScale.x <= 0.001f)
             {
                 Destroy(gameObject);
                 return;
