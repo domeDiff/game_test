@@ -2,12 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstacleTriangle obstTriangleSpawner;
     [SerializeField] private GameObject restartText;
     [SerializeField] private TMP_Text highScoreText;
+    [SerializeField] private Slider quitStatus;
     public static DDWorldManager Instance;
     public bool isAlive = true;
     private float score;
@@ -42,6 +44,8 @@ public class DDWorldManager : MonoBehaviour
         highScoreText.text = "HIGH SCORE: " + best.ToString("D4");
         highScoreText.gameObject.SetActive(true);
     }
+
+
     private void Update()
     {
         if (isAlive)
@@ -86,24 +90,13 @@ public class DDWorldManager : MonoBehaviour
             }
 
         }
+
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("dash-destroy");
         }
 
-        if((Keyboard.current != null && Keyboard.current.qKey.isPressed))
-        {
-            qHeldTime += Time.deltaTime;
-
-            if(qHeldTime >= quitTime)
-            {
-                SceneManager.LoadScene("dash-destroy_main_menu");
-            }
-        }
-        else
-        {
-            qHeldTime = 0f;
-        }
+        QuitGame();
     }
 
     private void IncreaseDiff(float spawnTime)
@@ -121,4 +114,22 @@ public class DDWorldManager : MonoBehaviour
         obstacleDestroyed++;
     }
 
+    public void QuitGame()
+    {
+        if (Keyboard.current.qKey.isPressed)
+        {
+            qHeldTime += Time.deltaTime;
+            quitStatus.value = qHeldTime / quitTime;
+
+            if (qHeldTime >= quitTime)
+            {
+                SceneManager.LoadScene("dash-destroy_main_menu");
+            }
+        }
+        else
+        {
+            qHeldTime = 0f;
+            quitStatus.value = 0f;
+        }
+    }
 }
