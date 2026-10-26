@@ -127,7 +127,8 @@ public class DDWorldManager : MonoBehaviour
             if (qHeldTime >= quitTime)
             {
                 isQuitting = true;
-                SceneManager.LoadScene("dash-destroy_main_menu");
+                //SceneManager.LoadScene("dash-destroy_main_menu");
+                Debug.Log("QUITTING");
             }
         }
         else
