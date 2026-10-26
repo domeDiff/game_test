@@ -151,7 +151,7 @@ public class DDPlayerMovement : MonoBehaviour
 
         if (other.CompareTag("DestroyPlayer"))
         {
-            DDWorldManager.Instance.isAlive = false;
+            DDWorldManager.Instance.Death();
             Instantiate(desAnim, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
