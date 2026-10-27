@@ -35,9 +35,16 @@ public class DDWorldManager : MonoBehaviour
         DDObstacle.ResetDifficulty();
 
     }
+
+    private void Start()
+    {
+        DDCrazyGames.GameplayStart();
+    }
     public void Death()
     {
         isAlive = false;
+        DDCrazyGames.GameplayStop();
+
         int finalScore = Mathf.FloorToInt(score);
         Debug.Log("final score: " + Mathf.FloorToInt(score));
 
@@ -95,6 +102,7 @@ public class DDWorldManager : MonoBehaviour
 
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
+            if (isAlive) DDCrazyGames.GameplayStop();
             SceneManager.LoadScene("dash-destroy");
         }
 
@@ -127,6 +135,7 @@ public class DDWorldManager : MonoBehaviour
 
             if (qHeldTime >= quitTime)
             {
+                if (isAlive) DDCrazyGames.GameplayStop();
                 isQuitting = true;
                 Debug.Log("Loading menu");
                 SceneManager.LoadScene("dash-destroy_main_menu");
