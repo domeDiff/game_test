@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class DDWorldManager : MonoBehaviour
 {
     [SerializeField] private DDObstacleTriangle obstTriangleSpawner;
-    [SerializeField] private GameObject restartText;
+
     [SerializeField] private TMP_Text highScoreText;
-    [SerializeField] private Slider quitStatus;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject quitText;
     public static DDWorldManager Instance;
     public bool isAlive = true;
     private float score;
-    private float quitTime = 3f;
+    private float quitTime = 1f;
     private float qHeldTime;
     private bool isQuitting;
     private int obstacleDestroyed;
@@ -34,16 +35,23 @@ public class DDWorldManager : MonoBehaviour
         DDObstacle.ResetDifficulty();
 
     }
+
+    private void Start()
+    {
+        DDCrazyGames.GameplayStart();
+    }
     public void Death()
     {
         isAlive = false;
+        DDCrazyGames.GameplayStop();
+
         int finalScore = Mathf.FloorToInt(score);
         Debug.Log("final score: " + Mathf.FloorToInt(score));
-        restartText.SetActive(true);
 
         int best = Mathf.Max(DDHighScore.HighScore, finalScore);
         highScoreText.text = "HIGH SCORE: " + best.ToString("D4");
-        highScoreText.gameObject.SetActive(true);
+
+        gameOverPanel.SetActive(true);
     }
 
 
@@ -94,6 +102,7 @@ public class DDWorldManager : MonoBehaviour
 
         if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
+            if (isAlive) DDCrazyGames.GameplayStop();
             SceneManager.LoadScene("dash-destroy");
         }
 
@@ -117,24 +126,25 @@ public class DDWorldManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (isQuitting) return;
+        if (isQuitting || Keyboard.current == null) return;
 
-        if (Keyboard.current != null && Keyboard.current.qKey.isPressed)
+        if (Keyboard.current.qKey.isPressed)
         {
             qHeldTime += Time.deltaTime;
-            quitStatus.value = qHeldTime / quitTime;
+            quitText.SetActive(true);
 
             if (qHeldTime >= quitTime)
             {
+                if (isAlive) DDCrazyGames.GameplayStop();
                 isQuitting = true;
-                //SceneManager.LoadScene("dash-destroy_main_menu");
-                Debug.Log("QUITTING");
+                Debug.Log("Loading menu");
+                SceneManager.LoadScene("dash-destroy_main_menu");
             }
         }
         else
         {
             qHeldTime = 0f;
-            quitStatus.value = 0f;
+            quitText.SetActive(false);
         }
     }
 }

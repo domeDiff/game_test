@@ -1,57 +1,51 @@
-using CrazyGames;
 using UnityEngine;
 
 public class DDHighScore : MonoBehaviour
 {
     private const string HighScoreKey = "dd_highscore";
 
-    public static int HighScore {  get; private set; }
+    public static int HighScore { get; private set; }
 
-    private static bool sdkReady;
-    private static bool initStarted;
     private bool saved;
 
     private void Start()
     {
-        if(sdkReady)
-        {
-            LoadHighScore();
-        }
-
-        else if (!initStarted)
-        {
-            initStarted = true;
-            CrazySDK.Init(() =>
-            {
-                sdkReady = true;
-                LoadHighScore();
-            });
-
-        }
-    }
-
-    private void LoadHighScore()
-    {
-        HighScore = CrazySDK.Data.GetInt(HighScoreKey, 0);
+        HighScore = Load();
     }
 
     private void Update()
     {
         var wm = DDWorldManager.Instance;
-        if (wm == null || saved) return;
+        if (wm == null || saved || wm.IsAlive) return;
 
-        if (!wm.IsAlive)
+        saved = true;
+        int finalScore = Mathf.FloorToInt(wm.Score);
+
+        if (finalScore > HighScore)
         {
-            saved = true;
-            int finalScore = Mathf.FloorToInt(wm.Score);
+            if (HighScore > 0) DDCrazyGames.HappyTime();   // no confetti on the first run
+            HighScore = finalScore;
+            Save(HighScore);
+        }
+    }
 
-            if(finalScore > HighScore)
-            {
-                HighScore = finalScore;
-                CrazySDK.Data.SetInt(HighScoreKey, HighScore);
-            }
+    private static int Load()
+    {
+        return CrazyInit.SdkReady
+            ? CrazyGames.CrazySDK.Data.GetInt(HighScoreKey, 0)
+            : PlayerPrefs.GetInt(HighScoreKey, 0);
+    }
 
-            Debug.Log("High Score: " + HighScore);
+    private static void Save(int value)
+    {
+        if (CrazyInit.SdkReady)
+        {
+            CrazyGames.CrazySDK.Data.SetInt(HighScoreKey, value);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(HighScoreKey, value);
+            PlayerPrefs.Save();
         }
     }
 }
