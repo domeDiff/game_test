@@ -41,6 +41,9 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
+    m_path: Assets/scenes/CG_Loading.unity
+    m_guid: 135710a2171dac643a738c70b4db37fb
+  - m_enabled: 1
     m_path: Assets/scenes/dash-destroy_main_menu.unity
     m_guid: a63af068b01e0e84baca6b691f07adb4
   - m_enabled: 1
