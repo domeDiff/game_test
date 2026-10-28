@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MDMovement : MonoBehaviour
 {
+    public static MDMovement Instance { get; private set; }
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform groundCheck;
@@ -20,6 +21,7 @@ public class MDMovement : MonoBehaviour
     private bool hasDoubleJump = true;
     private bool isGrounded;
     private bool isDashing;
+    public bool IsDashing => isDashing;
     private float dashTimer;
     private float dashCooldownTimer;
     private Rigidbody2D rb;
@@ -32,6 +34,7 @@ public class MDMovement : MonoBehaviour
 
     private void Awake()
     {
+        Instance =  this;
         rb = GetComponent<Rigidbody2D>();
         inputAction = new InputSystem_Actions();
         animator = GetComponentInChildren<Animator>();
@@ -45,6 +48,10 @@ public class MDMovement : MonoBehaviour
     private void OnDisable()
     {
         inputAction.Disable();
+    }
+    private void OnDestroy()
+    {
+        inputAction.Dispose();
     }
     private void Update()
     {
