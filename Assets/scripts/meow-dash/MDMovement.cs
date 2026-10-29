@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MDMovement : MonoBehaviour
 {
+    public static MDMovement Instance { get; private set; }
     [SerializeField] private float jumpForce = 8f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform groundCheck;
@@ -20,9 +21,11 @@ public class MDMovement : MonoBehaviour
     private bool hasDoubleJump = true;
     private bool isGrounded;
     private bool isDashing;
+    public bool IsDashing => isDashing;
     private float dashTimer;
     private float dashCooldownTimer;
     private Rigidbody2D rb;
+
     private InputSystem_Actions inputAction;
     private Animator animator;
 
@@ -32,6 +35,7 @@ public class MDMovement : MonoBehaviour
 
     private void Awake()
     {
+        Instance =  this;
         rb = GetComponent<Rigidbody2D>();
         inputAction = new InputSystem_Actions();
         animator = GetComponentInChildren<Animator>();
@@ -45,6 +49,10 @@ public class MDMovement : MonoBehaviour
     private void OnDisable()
     {
         inputAction.Disable();
+    }
+    private void OnDestroy()
+    {
+        inputAction.Dispose();
     }
     private void Update()
     {
@@ -63,11 +71,6 @@ public class MDMovement : MonoBehaviour
         if (inputAction.Player.Sprint.WasPressedThisFrame())
         {
             Dash();
-        }
-
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            Reload();
         }
 
         if (animator != null)
@@ -129,8 +132,9 @@ public class MDMovement : MonoBehaviour
         dashTimer = dashDuration;
     }
 
-    private void Reload()
+    public void ChangeProp()
     {
-        SceneManager.LoadScene("meow-dash");
+        rb.mass = 5f;
+        rb.gravityScale = 5f;
     }
 }
