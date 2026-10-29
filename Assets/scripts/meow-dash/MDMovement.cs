@@ -25,6 +25,7 @@ public class MDMovement : MonoBehaviour
     private float dashTimer;
     private float dashCooldownTimer;
     private Rigidbody2D rb;
+
     private InputSystem_Actions inputAction;
     private Animator animator;
 
@@ -70,11 +71,6 @@ public class MDMovement : MonoBehaviour
         if (inputAction.Player.Sprint.WasPressedThisFrame())
         {
             Dash();
-        }
-
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            Reload();
         }
 
         if (animator != null)
@@ -136,8 +132,9 @@ public class MDMovement : MonoBehaviour
         dashTimer = dashDuration;
     }
 
-    private void Reload()
+    public void ChangeProp()
     {
-        SceneManager.LoadScene("meow-dash");
+        rb.mass = 5f;
+        rb.gravityScale = 5f;
     }
 }
