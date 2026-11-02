@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GUCamFollow : MonoBehaviour
 {
+    [SerializeField] private float offsetValue = 4f;
     private Transform player;
     private new Camera camera;
 
@@ -13,7 +14,7 @@ public class GUCamFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 offset = new Vector3(0f, 5f , 0f);
+        Vector3 offset = new Vector3(0f, offsetValue , 0f);
         if (player != null)
         {
             Vector3 newPosition = player.position;
