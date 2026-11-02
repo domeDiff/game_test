@@ -11,6 +11,7 @@ TagManager:
   - DestroyObstacle
   - DestroyPlayer
   - DDMainObst
+  - GUPlayer
   layers:
   - Default
   - TransparentFX
