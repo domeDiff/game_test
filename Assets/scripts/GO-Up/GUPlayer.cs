@@ -25,16 +25,6 @@ public class GUPlayer : MonoBehaviour
         inputActions.Disable();
     }
 
-    private void Update()
-    {
-        Vector2 input = inputActions.Player.Move.ReadValue<Vector2>();
-
-        if (inputActions.Player.Move.WasPressedThisFrame())
-        {
-            rb.MovePosition(Vector2.MoveTowards(rb.position, , speedMultiplier));
-        }
-    }
-
     private void FixedUpdate()
     {
         rb.linearVelocity =  new Vector2(0f, floatSpeed * speedMultiplier * Time.deltaTime);
