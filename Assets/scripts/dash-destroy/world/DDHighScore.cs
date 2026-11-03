@@ -23,7 +23,7 @@ public class DDHighScore : MonoBehaviour
 
         if (finalScore > HighScore)
         {
-            if (HighScore > 0) DDCrazyGames.HappyTime();   // no confetti on the first run
+            //if (HighScore > 0) DDCrazyGames.HappyTime();   // no confetti on the first run
             HighScore = finalScore;
             Save(HighScore);
         }
@@ -31,21 +31,23 @@ public class DDHighScore : MonoBehaviour
 
     private static int Load()
     {
-        return CrazyInit.SdkReady
-            ? CrazyGames.CrazySDK.Data.GetInt(HighScoreKey, 0)
-            : PlayerPrefs.GetInt(HighScoreKey, 0);
+        //return CrazyInit.SdkReady
+        //    ? CrazyGames.CrazySDK.Data.GetInt(HighScoreKey, 0)
+        //    : PlayerPrefs.GetInt(HighScoreKey, 0);
+
+        return PlayerPrefs.GetInt(HighScoreKey, 0);
     }
 
     private static void Save(int value)
     {
-        if (CrazyInit.SdkReady)
-        {
-            CrazyGames.CrazySDK.Data.SetInt(HighScoreKey, value);
-        }
-        else
-        {
+        //if (CrazyInit.SdkReady)
+        //{
+        //    CrazyGames.CrazySDK.Data.SetInt(HighScoreKey, value);
+        //}
+        //else
+        
             PlayerPrefs.SetInt(HighScoreKey, value);
             PlayerPrefs.Save();
-        }
+        
     }
 }
